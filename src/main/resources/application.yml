@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/game?enabledTLSProtocols=TLSv1.2
+    jdbcUrl: jdbc:mysql://localhost:3306/game?enabledTLSProtocols=TLSv1.2
+    username: root
+    password: 1234
+    driverClassName: com.mysql.cj.jdbc.Driver
+    testOnBorrow: true
+    validationQuery: SELECT 1
+    configuration:
+      poolName: HikariPool-1-RDS
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: false
+
+server:
+  port: 8000
