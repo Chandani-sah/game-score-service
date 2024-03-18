@@ -32,7 +32,7 @@ public class FileReadObserverImpl implements Observer {
     public void updateScore(String filePath) {
         try {
             if(!Files.exists(Paths.get(filePath))) {
-                log.info("File: {} does not exist", filePath);
+                log.info("Score file: {} does not exist", filePath);
                 return;
             }
             // Read JSON content from file
@@ -46,10 +46,7 @@ public class FileReadObserverImpl implements Observer {
                         .score(playerScore.getScore()).build());
             });
             scoreRepository.saveAll(scoreList);
-
-            // Print deserialized object
-            System.out.println("Deserialized object: " + playerScores.toString());
-//            Files.delete(Paths.get(filePath));
+            log.info("Player score saved to db successfully");
         } catch (IOException e) {
             System.out.println("An error occurred while reading or deserializing the file: " + e.getMessage());
         }

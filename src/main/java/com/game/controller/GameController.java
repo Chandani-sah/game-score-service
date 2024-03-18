@@ -1,13 +1,11 @@
 package com.game.controller;
 
 import com.game.dto.PlayerScore;
-import com.game.service.GameManager;
+import com.game.service.GameService;
 import com.game.service.ScoreService;
-import com.game.service.observers.impl.FileReadObserverImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -15,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class GameController {
 
-    private GameManager gameManager;
+    private GameService gameService;
     private ScoreService scoreService;
 
     @PostMapping("/start-game")
@@ -23,8 +21,7 @@ public class GameController {
             @RequestBody
                     List<String> players
     ) {
-        gameManager.addObserver(new FileReadObserverImpl());
-        gameManager.startGame(players);
+        gameService.startGame(players);
     }
 
     @GetMapping("/top-score/{playerCount}")
