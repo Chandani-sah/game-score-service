@@ -1,7 +1,7 @@
 package com.game.service.impl;
 
 import com.game.service.GameManager;
-import com.game.service.observers.impl.FileReadObserverImpl;
+import com.game.service.observers.impl.FileReadObserver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,7 +34,7 @@ public class GameServiceImplTest {
         gameService.startGame(players);
 
         // Verify that addObserver and startGame methods are called
-        verify(gameManager, times(1)).addObserver(any(FileReadObserverImpl.class));
+        verify(gameManager, times(1)).addObserver(any(FileReadObserver.class));
         verify(gameManager, times(1)).startGame(players);
         // Verify no other methods are called on gameManager
         verifyNoMoreInteractions(gameManager);

@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class FileReadObserverImpl implements Observer {
+public class FileReadObserver implements Observer {
 
     @Autowired
     private ScoreRepository scoreRepository;
