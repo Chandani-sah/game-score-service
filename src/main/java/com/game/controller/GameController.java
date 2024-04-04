@@ -4,8 +4,12 @@ import com.game.dto.PlayerScore;
 import com.game.service.GameService;
 import com.game.service.ScoreService;
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,11 +28,14 @@ public class GameController {
         gameService.startGame(players);
     }
 
-    @GetMapping("/top-score/{playerCount}")
-    public List<PlayerScore> getTopPlayersScore(
-            @PathVariable(value = "playerCount")
-            Integer playerCount
+    @GetMapping("/top-score/{count}")
+    public ResponseEntity<List<PlayerScore>> getTopPlayersScore(
+            @PathVariable(value = "count")
+            Integer count
     ) {
-return scoreService.getTopPlayersScore(playerCount);
+        if(count <= 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(scoreService.getTopPlayersScore(count), HttpStatus.OK);
     }
 }

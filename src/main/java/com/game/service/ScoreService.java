@@ -5,5 +5,5 @@ import com.game.dto.PlayerScore;
 import java.util.List;
 
 public interface ScoreService {
-    List<PlayerScore> getTopPlayersScore(int playerCount);
+    List<PlayerScore> getTopPlayersScore(int count);
 }
